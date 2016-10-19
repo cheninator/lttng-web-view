@@ -1,34 +1,48 @@
 <?php
 	
-	class GoogleChartColumn 
-	{
-		public $id;
-		public $label;
-		public $type;
-		public $role;
-		public $pattern;
-	}
-
-	class GoogleChartRow 
-	{
-		// Value of the row (Should match the column data type)
-		public $v;
-
-		// String formatted version of $value
-		public $f;
-
-		// An object that is a map of custom values applied to the cell
-		public $p;
-	}
+	require_once("GoogleChartColumn.php");
+	require_once("GoogleChartRow.php");
 	
 	class GoogleChart 
 	{
-		private $fileName_;
-		private $metadata_;
+		public $cols;
+		public $rows;
 
-		function __construct($fileName)
+		public function __construct()
+		{	
+			$this->cols = array();
+			$this->rows = array();
+		}
+
+		public function getClassType($class)
 		{
-			$this->fileName_ = $fileName;
+			$val = $class;
+
+			switch($class)
+			{
+				case "process":
+				case "cpu":
+					$val = "string";
+					break;
+
+				case "ratio":
+				case "int":
+					$val = "number";
+					break;
+			}
+
+			return $val;
+		}
+
+		public function addColumn(GoogleChartColumn $column)
+		{
+			array_push($this->cols, $column);
+		}
+
+		public function addRow(GoogleChartRow $row)
+		{
+			array_push($this->rows, $row);
 		}
 	}
+
 ?>

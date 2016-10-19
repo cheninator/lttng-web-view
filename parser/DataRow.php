@@ -2,16 +2,16 @@
 
 	class DataRow
 	{
-		public $value;
+		public $values;
 
 		function __construct()
 		{
-			$this->value= array();
+			$this->values= array();
 		}
 
 		public function addValue($value)
 		{
-			array_push($this->value, $value);
+			array_push($this->values, $value);
 		}
 	}
 

@@ -2,7 +2,7 @@
 
 	class TracingData 
 	{
-		private $tracingEntries;
+		public $tracingEntries;
 
 		function __construct() 
 		{

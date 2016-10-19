@@ -21,18 +21,18 @@
 
 	class DataParser 
 	{
-		private $fileName_;
+		private $fileName;
 		private $tracingData;
 
 		function __construct($fileName)
 		{
-			$this->fileName_ = $fileName;
+			$this->fileName = $fileName;
 			$this->tracingData = new TracingData();
 		}
 
 		private function readMetadata() 
 		{	
- 			$fileContent = file_get_contents("{$this->fileName_}.meta");
+ 			$fileContent = file_get_contents("{$this->fileName}.meta");
 			$jsonContent = json_decode($fileContent, true);
 			$tableClasses =  $jsonContent[MetadataName::TableClasses];
 
@@ -115,7 +115,7 @@
 
 		private function readData()
 		{
-			$fileContent = file_get_contents("{$this->fileName_}.data");
+			$fileContent = file_get_contents("{$this->fileName}.data");
 			$data = json_decode($fileContent, true);
 
 			$results = $data['results'];
@@ -183,12 +183,12 @@
 		{
 			$this->readMetadata();
 			$this->readData();
-			//echo print_r($this->tracingData);
-			echo $this->tracingData->toJSON();
+			// echo $this->tracingData->toJSON();
+		}
+
+		public function getTracingData()
+		{
+			return $this->tracingData;
 		}
 	}
-
-	$inputfilename = "../data/iousagetop";
-	$parser = new DataParser($inputfilename);
-	$parser->parse();
 ?>
