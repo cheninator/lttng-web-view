@@ -22,12 +22,16 @@
 			switch($class)
 			{
 				case "process":
+				case "disk":
 				case "cpu":
+				case "path":
 					$val = "string";
 					break;
 
 				case "ratio":
+				case "duration":
 				case "int":
+				case "size":
 					$val = "number";
 					break;
 			}

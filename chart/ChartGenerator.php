@@ -75,6 +75,8 @@
 			{
 				$filename = $chart->getTitle();
 				$content = json_encode($chart);
+				$filename = str_replace(' ', '_', $filename);
+				$filename = str_replace('/', '_', $filename); 	
 				file_put_contents("result/{$filename}", $content);
 			}
 		}
