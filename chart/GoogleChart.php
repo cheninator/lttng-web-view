@@ -5,6 +5,7 @@
 	
 	class GoogleChart 
 	{
+		private $title;
 		public $cols;
 		public $rows;
 
@@ -32,6 +33,16 @@
 			}
 
 			return $val;
+		}
+
+		public function setTitle($title)
+		{
+			$this->title = $title;
+		}
+
+		public function getTitle()
+		{
+			return $this->title;
 		}
 
 		public function addColumn(GoogleChartColumn $column)

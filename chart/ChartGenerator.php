@@ -28,6 +28,7 @@
 					if(!empty($dataChart->rows))
 					{
 						$googleChart = new GoogleChart();
+						$googleChart->setTitle($dataChart->title);
 
 						// No need to check if columns is empty
 						foreach($dataChart->columns as $column)
@@ -60,6 +61,21 @@
 						array_push($this->charts, $googleChart);
 					}
 				}
+			}
+
+			$this->generateFiles();
+		}
+
+		private function generateFiles()
+		{
+	     	if (!file_exists('result'))
+   				mkdir('result');
+
+			foreach($this->charts as $chart)
+			{
+				$filename = $chart->getTitle();
+				$content = json_encode($chart);
+				file_put_contents("result/{$filename}", $content);
 			}
 		}
 	}
