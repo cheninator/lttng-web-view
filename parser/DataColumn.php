@@ -4,6 +4,7 @@
 	{
 		public $title;
 		public $class;
+		public $unit;
 	}
 
 ?>

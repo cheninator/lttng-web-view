@@ -48,10 +48,14 @@
 						{
 							$googleChartRow = new GoogleChartRow();
 
-							foreach($row->values as $value)
+							for($i = 0; $i < count($row->values); ++$i)
 							{
 								$googleChartValue = new GoogleChartValue();
-								$googleChartValue->v = $value;
+								$googleChartValue->v = $row->values[$i];
+
+								if(isset($dataChart->columns[$i]->unit))
+									$googleChartValue->f = "{$row->values[$i]} (in {$dataChart->columns[$i]->unit})";
+
 								$googleChartRow->addValue($googleChartValue);
 							}
 
@@ -76,13 +80,13 @@
 				$filename = $chart->getTitle();
 				$content = json_encode($chart);
 				$filename = str_replace(' ', '_', $filename);
-				$filename = str_replace('/', '_', $filename); 	
+				$filename = str_replace('/', '\/', $filename); 	
 				file_put_contents("result/{$filename}", $content);
 			}
 		}
 	}
 
-	$inputfilename = "../data/iousagetop";
+	$inputfilename = "../data/phptop";
 	$chartGenerator = new ChartGenerator();
 	$chartGenerator->generateCharts($inputfilename);
 ?>

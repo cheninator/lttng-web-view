@@ -25,6 +25,7 @@
 				case "disk":
 				case "cpu":
 				case "path":
+				case "mysql":
 					$val = "string";
 					break;
 

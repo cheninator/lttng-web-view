@@ -17,6 +17,7 @@
 		const Data = "data";
 		const Name = "name";
 		const TID = "tid";
+		const Unit = "unit";
 	}
 
 	class DataParser 
@@ -58,6 +59,11 @@
 						$dataColumn = new DataColumn();
 						$dataColumn->title = $cd[MetadataName::Title];
 						$dataColumn->class = $cd[MetadataName::ClassName];
+						$dataColumn->unit = $cd[MetadataName::Unit];
+
+
+						if($dataColumn->title == "Request ID")
+							$dataColumn->class = "string";
 						
 						// Save as base column if there is multiple DataCharts 
 						$baseColumn = clone $dataColumn;
@@ -79,6 +85,10 @@
 						$dataColumn = new DataColumn();
 						$dataColumn->title = $cd[MetadataName::Title];
 						$dataColumn->class = $cd[MetadataName::ClassName];
+						$dataColumn->unit = $cd[MetadataName::Unit];
+
+						if($dataColumn->title == "Request ID")
+							$dataColumn->class = "string";
 
 						// Add Column to DataChart
 						$dataChart->addColumn($dataColumn);
@@ -98,6 +108,10 @@
 						$dataColumn = new DataColumn();
 						$dataColumn->title = $cd[MetadataName::Title];
 						$dataColumn->class = $cd[MetadataName::ClassName];
+						$dataColumn->unit = $cd[MetadataName::Unit];
+
+						if($dataColumn->title == "Request ID")
+							$dataColumn->class = "string";
 
 						// Add 2nd Column to DataChart
 						$dataChart->addColumn($dataColumn);
@@ -175,7 +189,11 @@
 				// Process
 				$val = "{$datum[MetadataName::Name]} (tid : {$datum[MetadataName::TID]})";
 			}
-			
+			else
+			{
+				$val = $datum[MetadataName::Value];
+			}
+
 			return $val;
 		}
 
@@ -183,7 +201,7 @@
 		{
 			$this->readMetadata();
 			$this->readData();
-			// echo $this->tracingData->toJSON();
+			echo $this->tracingData->toJSON();
 		}
 
 		public function getTracingData()
