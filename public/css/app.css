@@ -1,0 +1,9 @@
+.piechart {
+	width: 100%; 
+	min-height: 300px;
+}
+
+.barchart {
+	width: 100%;
+	min-height: 500px;
+}
