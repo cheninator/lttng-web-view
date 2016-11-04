@@ -20,7 +20,16 @@
                 <a href="/mysql"><i class="fa fa-fw fa-table"></i> MySQL</a>
             </li>
             <li>
-                <a href="/php"><i class="fa fa-fw fa-file"></i> PHP</a>
+                <a href="/php"><i class="fa fa-fw fa-file-code-o "></i> PHP</a>
+            </li>
+            <li>
+                <a href="/cpu-usage"><i class="fa fa-fw fa-desktop"></i> CPU Usage</a>
+            </li>
+            <li>
+                <a href="/io-usage"><i class="fa fa-fw fa-file"></i> I/O Usage</a>
+            </li>
+            <li>
+                <a href="/io-latency"><i class="fa fa-fw fa-line-chart"></i> I/O Latency</a>
             </li>
         </ul>
     </div>

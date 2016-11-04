@@ -26,3 +26,11 @@ Route::get('/mysql', function () {
 Route::get('/php', function () {
     return view('PHP.index');
 });
+
+Route::get('/cpu-usage', function () {
+    return view('CPU.index');
+});
+
+Route::get('/io-usage', function () {
+    return view('IO.index');
+});

@@ -17,6 +17,7 @@
 		const Data = "data";
 		const Name = "name";
 		const TID = "tid";
+		const ID = "id";
 		const Unit = "unit";
 	}
 
@@ -188,6 +189,11 @@
 			{
 				// Process
 				$val = "{$datum[MetadataName::Name]} (tid : {$datum[MetadataName::TID]})";
+			}
+			else if($datum[MetadataName::ClassName] == "cpu")
+			{
+				// Process
+				$val = "CPU-{$datum[MetadataName::ID]}";
 			}
 			else
 			{
