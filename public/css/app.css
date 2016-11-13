@@ -1,9 +1,14 @@
-.piechart {
+.chart-small {
 	width: 100%; 
 	min-height: 300px;
 }
 
-.barchart {
-	width: 100%;
+.chart-medium {
+	width: 100%; 
+	min-height: 400px;
+}
+
+.chart-large {
+	width: 100%; 
 	min-height: 500px;
 }

@@ -3,17 +3,17 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Main Dashboard</h1>
+        <h1 class="page-header">IO Usage Dashboard</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Apache - Top request duration</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Total operation size per process</h3>
             </div>
             <div class="panel-body">
-                <div id="top_apache" class="chart-small"></div>
+                <div id="top_apache" class="chart-large"></div>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> PHP - Top request duration</h3>
             </div>
             <div class="panel-body">
-                <div id="top_php" class="chart-small"></div>
+                <div id="top_php" class="chart-large"></div>
             </div>
         </div>
     </div>
@@ -79,25 +79,25 @@
     google.charts.setOnLoadCallback(() => {
 
         var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("lamptop:Request_ID-Duration", "top_apache", true, clone);
+        drawBarChart("iousagetop:Process-Total_operations_size", "top_apache", true, clone);
     });
 
     google.charts.setOnLoadCallback(() => {
 
         var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("lamptop:Request_ID-PHP_Execution_Duration", "top_php", true, clone);        
+        drawBarChart("iousagetop:File_descriptor_owners-Operations_size", "top_php", true, clone);        
     });
 
     google.charts.setOnLoadCallback(() => {
 
         var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("mysql:Table-Duration", "top_mysql", true, clone);       
+        drawBarChart("iousagetop:Process-Disk_operations_size", "top_mysql", true, clone);       
     });
 
     google.charts.setOnLoadCallback(() => {
 
         var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("cpuusage:CPU-CPU_usage", "top_cpu", false, clone);       
+        drawBarChart("iousagetop:Process-Operations_size", "top_cpu", true, clone);       
     });
 
     function drawBarChart(file, htmlElement, descending, options) {

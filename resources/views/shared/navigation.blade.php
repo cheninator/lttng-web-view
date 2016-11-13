@@ -26,10 +26,18 @@
                 <a href="/cpu-usage"><i class="fa fa-fw fa-desktop"></i> CPU Usage</a>
             </li>
             <li>
-                <a href="/io-usage"><i class="fa fa-fw fa-file"></i> I/O Usage</a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> I/O Dashboard<i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li>
+                        <a href="/io-usage"><i class="fa fa-fw fa-file"></i> I/O Usage</a>
+                    </li>
+                    <li>
+                        <a href="/io-latency"><i class="fa fa-fw fa-line-chart"></i> I/O Latency</a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="/io-latency"><i class="fa fa-fw fa-line-chart"></i> I/O Latency</a>
+                <a href="/lttng-io-latency"><i class="fa fa-fw fa-line-chart"></i> LTTng I/O Latency</a>
             </li>
         </ul>
     </div>

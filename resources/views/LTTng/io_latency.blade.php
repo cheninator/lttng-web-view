@@ -3,57 +3,38 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Main Dashboard</h1>
+        <h1 class="page-header">LTTng Dashboard</h1>
     </div>
 </div>
+
 <div class="row">
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Apache - Top request duration</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> CPU Usage per process</h3>
             </div>
             <div class="panel-body">
-                <div id="top_apache" class="chart-small"></div>
+                <div id="cpu_process" class="chart-medium"></div>
             </div>
         </div>
     </div>
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> PHP - Top request duration</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Top process migration count</h3>
             </div>
             <div class="panel-body">
-                <div id="top_php" class="chart-small"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> MySQL - Top table duration</h3>
-            </div>
-            <div class="panel-body">
-                <div id="top_mysql" class="chart-large"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> CPU - Usage per core</h3>
-            </div>
-            <div class="panel-body">
-                <div id="top_cpu" class="chart-large"></div>
+                <div id="process_migration" class="chart-medium"></div>
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-
+    
     // Load the Visualization API and the piechart package.
     google.charts.load('current', {'packages':['corechart', 'table', 'bar']});
-      
+    
     var options = {
         chartArea: {
             width: '80%',
@@ -79,25 +60,13 @@
     google.charts.setOnLoadCallback(() => {
 
         var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("lamptop:Request_ID-Duration", "top_apache", true, clone);
+        drawBarChart("lttng-iolatencystats:System_call_category-Call_count", "cpu_process", true, clone);
     });
 
     google.charts.setOnLoadCallback(() => {
 
         var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("lamptop:Request_ID-PHP_Execution_Duration", "top_php", true, clone);        
-    });
-
-    google.charts.setOnLoadCallback(() => {
-
-        var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("mysql:Table-Duration", "top_mysql", true, clone);       
-    });
-
-    google.charts.setOnLoadCallback(() => {
-
-        var clone = JSON.parse(JSON.stringify(options));
-        drawBarChart("cpuusage:CPU-CPU_usage", "top_cpu", false, clone);       
+        drawBarChart("lttng-iolatencystats:System_call_category-Average_call_latency", "process_migration", true, clone);        
     });
 
     function drawBarChart(file, htmlElement, descending, options) {

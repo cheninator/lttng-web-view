@@ -32,5 +32,13 @@ Route::get('/cpu-usage', function () {
 });
 
 Route::get('/io-usage', function () {
-    return view('IO.index');
+    return view('IO.usage');
+});
+
+Route::get('/io-latency', function () {
+    return view('IO.latency');
+});
+
+Route::get('lttng-io-latency', function () {
+    return view('LTTng.io_latency');
 });

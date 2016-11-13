@@ -18,4 +18,3 @@
 			array_push($this->data, $data);
 		}
 	}
-

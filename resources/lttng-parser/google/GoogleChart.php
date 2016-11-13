@@ -27,6 +27,8 @@
 				case "path":
 				case "mysql":
 				case "mysqlthreads":
+				case "syscall":
+				case "fd":
 					$val = "string";
 					break;
 

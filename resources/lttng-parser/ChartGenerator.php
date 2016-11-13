@@ -35,7 +35,7 @@
 					$type = GoogleChart::getClassType($first->column->class);
 
 					if(!empty($first->values) && !strcmp($type, "string"))
-					{
+					{						
 						for($j = 0; $j < count($entry->data); ++$j)
 						{	
 							if($i == $j)
@@ -100,6 +100,11 @@
 			$this->generateFiles();
 		}
 
+		private function generateTimeline()
+		{
+
+		}
+
 		private function addChartColumn(DataColumn $dataColumn, GoogleChart &$googleChart) 
 		{
 			$chartColumn = new GoogleChartColumn();
@@ -125,19 +130,27 @@
 				// Path
 				$val = $datum["path"];
 			}
-			else if($datum[MetadataName::ClassName] == "process")
+			else if(isset($datum[MetadataName::ClassName]) && !isset($datum[MetadataName::Value]))
 			{
-				// Process
-				$val = "{$datum[MetadataName::Name]} (tid : {$datum[MetadataName::TID]})";
+				$className = $datum[MetadataName::ClassName];
+
+				switch($className)
+				{
+					case "process":
+						$val = "{$datum[MetadataName::Name]} (tid : {$datum[MetadataName::TID]})";
+						break;
+					case "cpu":
+						$val = "CPU-{$datum[MetadataName::ID]}";
+						break;
+				}
 			}
-			else if($datum[MetadataName::ClassName] == "cpu")
-			{
-				// Process
-				$val = "CPU-{$datum[MetadataName::ID]}";
-			}
-			else
+			else if(isset($datum[MetadataName::Value]))
 			{
 				$val = $datum[MetadataName::Value];
+			}
+			else 
+			{
+				$val = $datum;
 			}
 
 			return $val;
@@ -152,7 +165,7 @@
    				mkdir('result');
 	     	}
 
-			if(!file_exists($this->file))
+			if(!file_exists("result/{$folder}"))
 			{
 				mkdir("result/{$folder}");
 			}
