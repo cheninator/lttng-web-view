@@ -27,10 +27,10 @@
             </div>
         </div>
     </div>
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> MySQL - Top requests</h3>
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> MySQL - Top table duration</h3>
                 </div>
             <div class="panel-body">
                 <div id="chart_div_mysql" class="barchart"></div>
@@ -42,26 +42,12 @@
 <script type="text/javascript">
 
     // Load the Visualization API and the piechart package.
-    google.charts.load('current', {'packages':['corechart', 'table']});
+    google.charts.load('current', {'packages':['corechart', 'table', 'bar']});
       
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawApacheChart);
     google.charts.setOnLoadCallback(drawPHPChart);
     google.charts.setOnLoadCallback(drawMySqlChart);
-
-    var piechartOptions = {
-        chartArea: {
-            width: '100%',
-            height: '100%'
-        },
-        legend: {
-            alignment: 'center',
-            position: 'right',
-            textStyle: {
-                fontSize: 15
-            }
-        }
-    }
 
     function drawApacheChart() {
 
@@ -74,9 +60,26 @@
         // Create our data table out of JSON data loaded from server.
         var data = new google.visualization.DataTable(jsonData);
 
+        var opts = {
+            chartArea: {
+                width: '80%',
+                height: '80%'
+            },
+            legend: {
+                position: 'none'
+            },
+            bars: 'horizontal',
+            axes: {
+                x: {
+                    0: { side: 'top', label: data.getColumnLabel(1)}
+                }
+            },
+            bar: { groupWidth: "90%" }
+        };
+
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div_apache'));
-        chart.draw(data, piechartOptions);
+        var chart = new google.charts.Bar(document.getElementById('chart_div_apache'));
+        chart.draw(data, opts);
     }
 
     function drawPHPChart() {
@@ -86,40 +89,63 @@
             dataType: "json",
             async: false
         }).responseText;
-                
+
         // Create our data table out of JSON data loaded from server.
         var data = new google.visualization.DataTable(jsonData);
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div_php'));
-        chart.draw(data, piechartOptions);
-    }
-
-    function drawMySqlChart() {
-
-        var jsonData = $.ajax({
-            url: "api/charts/Mysql_Query_statistics_-_Duration",
-            dataType: "json",
-            async: false
-        }).responseText;
-                
-        // Create our data table out of JSON data loaded from server.
-        var data = new google.visualization.DataTable(jsonData);
-        data.sort({column: 1, desc: true});
-
-        var options = {
+        var opts = {
             chartArea: {
                 width: '80%',
                 height: '80%'
             },
             legend: {
                 position: 'none'
-            }
-        }
+            },
+            bars: 'horizontal',
+            axes: {
+                x: {
+                    0: { side: 'top', label: data.getColumnLabel(1)}
+                }
+            },
+            bar: { groupWidth: "90%" }
+        };
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div_mysql'));
-        chart.draw(data, options);
+        var chart = new google.charts.Bar(document.getElementById('chart_div_php'));
+        chart.draw(data, opts);
+    }
+
+    function drawMySqlChart() {
+
+        var jsonData = $.ajax({
+            url: "api/charts/Table-Duration",
+            dataType: "json",
+            async: false
+        }).responseText;
+                
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+        
+        var opts = {
+            chartArea: {
+                width: '80%',
+                height: '80%'
+            },
+            legend: {
+                position: 'none'
+            },
+            bars: 'horizontal',
+            axes: {
+                x: {
+                    0: { side: 'top', label: data.getColumnLabel(1)}
+                }
+            },
+            bar: { groupWidth: "90%" }
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.charts.Bar(document.getElementById('chart_div_mysql'));
+        chart.draw(data, opts);
     }
 
 </script>
