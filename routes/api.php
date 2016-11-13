@@ -12,7 +12,9 @@
 */
 
 Route::get('/charts/{name}', function ($name) {
-    $filePath = "../resources/chart/google/result/{$name}";
+    
+    $name = str_replace(':', '/', $name);
+    $filePath = "../resources/lttng-parser/result/{$name}";
     return file_get_contents($filePath);
 });
 

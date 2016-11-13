@@ -1,0 +1,1 @@
+{"cols":[{"id":"","label":"Method","type":"string","role":"","pattern":""},{"id":"","label":"Uri","type":"string","role":"","pattern":""}],"rows":[{"c":[{"v":"GET","f":null,"p":null},{"v":"\/hsdm\/","f":null,"p":null}]},{"c":[{"v":"GET","f":null,"p":null},{"v":"\/hsdm\/","f":null,"p":null}]},{"c":[{"v":"GET","f":null,"p":null},{"v":"\/hsdm\/","f":null,"p":null}]}]}

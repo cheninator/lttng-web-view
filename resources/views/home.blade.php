@@ -52,10 +52,12 @@
     function drawApacheChart() {
 
         var jsonData = $.ajax({
-            url: "api/charts/Apache_top_requests_-_Duration",
+            url: "api/charts/lamptop:Request_ID-Duration",
             dataType: "json",
             async: false
         }).responseText;
+
+        console.log(jsonData);
 
         // Create our data table out of JSON data loaded from server.
         var data = new google.visualization.DataTable(jsonData);
@@ -85,7 +87,7 @@
     function drawPHPChart() {
 
         var jsonData = $.ajax({
-            url: "api/charts/Php_top_requests_-_Duration",
+            url: "api/charts/lamptop:Request_ID-PHP_Execution_Duration",
             dataType: "json",
             async: false
         }).responseText;
@@ -118,7 +120,7 @@
     function drawMySqlChart() {
 
         var jsonData = $.ajax({
-            url: "api/charts/Table-Duration",
+            url: "api/charts/mysql:Table-Duration",
             dataType: "json",
             async: false
         }).responseText;

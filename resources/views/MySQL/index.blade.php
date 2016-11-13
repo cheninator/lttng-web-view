@@ -43,7 +43,7 @@
 <script type="text/javascript">
 
     // Load the Visualization API and the piechart package.
-    google.charts.load('current', {'packages':['corechart', 'table']});
+    google.charts.load('current', {'packages':['corechart', 'table', 'bar']});
         
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawApacheChart);
@@ -51,17 +51,34 @@
 
     function drawApacheChart() {
         var jsonData = $.ajax({
-          url: "api/charts/Per-TID_Mysql_Query_statistics_-_Total_Mysql_Query_count",
+          url: "api/charts/mysql:Mysqlthreads-Total_Mysql_Query_count",
           dataType: "json",
           async: false
         }).responseText;
                   
         // Create our data table out of JSON data loaded from server.
         var data = new google.visualization.DataTable(jsonData);
+        
+        var opts = {
+            chartArea: {
+                width: '80%',
+                height: '80%'
+            },
+            legend: {
+                position: 'none'
+            },
+            bars: 'horizontal',
+            axes: {
+                x: {
+                    0: { side: 'top', label: data.getColumnLabel(1)}
+                }
+            },
+            bar: { groupWidth: "90%" }
+        };
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div_apache'));
-        chart.draw(data);
+        var chart = new google.charts.Bar(document.getElementById('chart_div_apache'));
+        chart.draw(data, opts);
     }
 
 </script>

@@ -13,6 +13,7 @@
 	class ChartGenerator
 	{
 		public $charts;
+		private $file;
 
 		public function __construct()
 		{
@@ -21,6 +22,7 @@
 
 		public function generateCharts($fileName)
 		{
+			$this->file = $fileName;
 			$parser = new LTTngParser($fileName);
 			$parser->parse();
 			$intermediateData = $parser->getIntermediateData();
@@ -143,10 +145,17 @@
 
 		private function generateFiles()
 		{
+			$folder = explode("/", $this->file)[1];
+
 	     	if(!file_exists('result'))
 	     	{
    				mkdir('result');
 	     	}
+
+			if(!file_exists($this->file))
+			{
+				mkdir("result/{$folder}");
+			}
 
 			for($i = 0; $i < count($this->charts); ++$i)
 			{	
@@ -159,14 +168,17 @@
 				$fileName = "{$firstColName}-{$secondColName}";
 			
 				$fileName = str_replace(' ', '_', $fileName);
-				$fileName = str_replace('/', '\/', $fileName);
+				$fileName = str_replace('/', '_', $fileName);
 
-				file_put_contents("result/{$fileName}", $content);
+				file_put_contents("result/{$folder}/{$fileName}", $content);
 			}
 		}
 	}
 
-	$inputfilename = "data/mysql";
-	$chartGenerator = new ChartGenerator();
-	$chartGenerator->generateCharts($inputfilename);
+	if(count($argv) > 1)
+	{
+		$inputfilename = "data/{$argv[1]}";
+		$chartGenerator = new ChartGenerator();
+		$chartGenerator->generateCharts($inputfilename);
+	}
 
