@@ -25,6 +25,7 @@
 			$this->file = $fileName;
 			$parser = new LTTngParser($fileName);
 			$parser->parse();
+
 			$intermediateData = $parser->getIntermediateData();
 
 			foreach($intermediateData->getEntries() as $entry)
@@ -44,53 +45,20 @@
 							}
 
 							$second = $entry->data[$j];
+							$type = GoogleChart::getClassType($second->column->class);
+
 							if(!empty($second->values))
 							{
 								$googleChart = new GoogleChart();
 
-								$this->addChartColumn($first->column, $googleChart);
-								$this->addChartColumn($second->column, $googleChart);
-						
-								for($k = 0; $k < count($first->values); ++$k)
+								if(strcmp($type, "time-range")) 
 								{
-									$chartRow = new GoogleChartRow();
-
-									/* Adding the first value */
-									$firstValue = $this->getClassValue($first->values[$k]);
-
-									if(is_null($firstValue))
-									{
-										continue;
-									}
-
-									$cv = new GoogleChartValue();
-									$cv->v = $firstValue;
-
-									if(isset($first->column->unit))
-									{
-										$cv->f = "{$firstValue} ({$first->column->unit})";
-									}
-
-									$chartRow->addValue($cv);
-
-
-									/* Adding the second value */
-									$chartValue = new GoogleChartValue();
-									$secondValue = $this->getClassValue($second->values[$k]);
-									$chartValue->v = $secondValue;
-
-									if(isset($second->column->unit))
-									{
-										$chartValue->f = "{$secondValue} ({$second->column->unit})";
-									}
-
-									$chartRow->addValue($chartValue);
-
-									/* Add row to google chart object */
-									$googleChart->addRow($chartRow);
+									$this->buildChart($first, $second, $googleChart);
 								}
-
-								array_push($this->charts, $googleChart);
+								else if(!strcmp($type, "time-range")) 
+								{
+									$this->buildTimeline($first, $second, $googleChart);
+								}
 							}
 						}
 					}
@@ -99,10 +67,14 @@
 
 			$this->generateFiles();
 		}
-
-		private function generateTimeline()
+		
+		private function buildChart(Data $first, Data $second, GoogleChart &$googleChart)
 		{
+			$this->addChartColumn($first->column, $googleChart);
+			$this->addChartColumn($second->column, $googleChart);
+			$this->addChartRow($first, $second, $googleChart);
 
+			array_push($this->charts, $googleChart);
 		}
 
 		private function addChartColumn(DataColumn $dataColumn, GoogleChart &$googleChart) 
@@ -114,6 +86,109 @@
 			$chartColumn->role = "";
 			$chartColumn->pattern = "";
 			$googleChart->addColumn($chartColumn);
+		}
+
+		private function addChartRow(Data $first, Data $second, GoogleChart &$googleChart)
+		{
+			for($k = 0; $k < count($first->values); ++$k)
+			{
+				$chartRow = new GoogleChartRow();
+
+				/* Adding the first value */
+				$firstValue = $this->getClassValue($first->values[$k]);
+
+				if(is_null($firstValue))
+				{
+					// Ignore all null values
+					continue;
+				}
+
+				$cv = new GoogleChartValue();
+				$cv->v = $firstValue;
+
+				if(isset($first->column->unit))
+				{
+					$cv->f = "{$firstValue} ({$first->column->unit})";
+				}
+
+				$chartRow->addValue($cv);
+
+
+				/* Adding the second value */
+				$chartValue = new GoogleChartValue();
+				$secondValue = $this->getClassValue($second->values[$k]);
+				$chartValue->v = $secondValue;
+
+				if(isset($second->column->unit))
+				{
+					$chartValue->f = "{$secondValue} ({$second->column->unit})";
+				}
+
+				$chartRow->addValue($chartValue);
+
+				/* Add row to google chart object */
+				$googleChart->addRow($chartRow);
+			}
+		}
+
+		private function buildTimeline(Data $first, Data $second, GoogleChart &$googleChart)
+		{
+			$this->addChartColumn($first->column, $googleChart);
+			//$this->addChartColumn($first->column, $googleChart);
+
+			$start = new DataColumn();
+			$start->title = "start";
+			$start->class = "int";
+
+			$end = new DataColumn();
+			$end->title = "end";
+			$end->class = "int";
+
+			$this->addChartColumn($start, $googleChart);
+			$this->addChartColumn($end, $googleChart);
+
+			$this->addTimelineChartRow($first, $second, $googleChart);
+			array_push($this->charts, $googleChart);
+		}
+
+		private function addTimelineChartRow(Data $first, Data $second, GoogleChart &$googleChart)
+		{
+			for($k = 0; $k < count($first->values); ++$k)
+			{
+				$chartRow = new GoogleChartRow();
+
+				/* Adding the first value */
+				$firstValue = $this->getClassValue($first->values[$k]);
+
+				if(is_null($firstValue))
+				{
+					// Ignore all null values
+					continue;
+				}
+
+				$cv = new GoogleChartValue();
+				$cv->v = $firstValue;
+				$chartRow->addValue($cv);
+
+				/* Adding the second and third column */
+				//$chartRow->addValue(clone $cv);
+
+				$chartValue = new GoogleChartValue();
+				$secondValue = $second->values[$k]["begin"]["value"];
+				$secondValue = round($secondValue / 1000000);
+				$chartValue->v = $secondValue;
+				$chartRow->addValue($chartValue);
+
+				$chartValue = new GoogleChartValue();
+				$secondValue = $second->values[$k]["end"]["value"];
+				$secondValue = round($secondValue / 1000000);
+				$secondValue += 250;
+				$chartValue->v = $secondValue;
+				$chartRow->addValue($chartValue);
+
+				/* Add row to google chart object */
+				$googleChart->addRow($chartRow);
+			}
 		}
 
 		private function getClassValue($datum) 
@@ -194,4 +269,3 @@
 		$chartGenerator = new ChartGenerator();
 		$chartGenerator->generateCharts($inputfilename);
 	}
-
