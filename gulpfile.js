@@ -24,24 +24,32 @@ elixir(mix => {
 	.copy('node_modules/systemjs', 'public/systemjs')
 	.copy('node_modules/rxjs', 'public/rxjs')
 	.copy('node_modules/zone.js', 'public/zone.js')
-
+	.copy('node_modules/font-awesome/fonts', 'public/fonts')
+	.scripts(
+		[
+			'jquery/dist/jquery.min.js',
+			'bootstrap-sass-official/assets/javascripts/bootstrap.js',
+		],
+		'public/js/dependencies.js',
+		'node_modules'
+	)
 	.typescript(
-	[
-	    'app.component.ts',
-	    'app.module.ts',
-	    'main.ts'
-	],
-	'public/app',
-	{
-	    "target": "es5",
-	    "module": "system",
-	    "moduleResolution": "node",
-	    "sourceMap": true,
-	    "emitDecoratorMetadata": true,
-	    "experimentalDecorators": true,
-	    "removeComments": false,
-	    "noImplicitAny": false
-	}
+		[
+		    'app.component.ts',
+		    'app.module.ts',
+		    'main.ts'
+		    '**/*.ts'
+		],
+		'public/app',
+		{
+		    "target": "es5",
+		    "module": "system",
+		    "moduleResolution": "node",
+		    "sourceMap": true,
+		    "emitDecoratorMetadata": true,
+		    "experimentalDecorators": true,
+		    "removeComments": false,
+		    "noImplicitAny": false
+		}
 	);
-})
-;
+});
