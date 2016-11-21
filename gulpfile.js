@@ -24,20 +24,21 @@ elixir(mix => {
 	.copy('node_modules/systemjs', 'public/systemjs')
 	.copy('node_modules/rxjs', 'public/rxjs')
 	.copy('node_modules/zone.js', 'public/zone.js')
+	.copy('node_modules/ng2-charts', 'public/ng2-charts')
 	.copy('node_modules/font-awesome/fonts', 'public/fonts')
+
+	.copy('resources/assets/templates', 'public/views')	
 	.scripts(
 		[
 			'jquery/dist/jquery.min.js',
 			'bootstrap-sass-official/assets/javascripts/bootstrap.js',
+			'chart.js/dist/Chart.min.js',
 		],
 		'public/js/dependencies.js',
 		'node_modules'
 	)
 	.typescript(
 		[
-		    'app.component.ts',
-		    'app.module.ts',
-		    'main.ts'
 		    '**/*.ts'
 		],
 		'public/app',

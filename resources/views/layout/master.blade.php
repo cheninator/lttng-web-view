@@ -5,6 +5,8 @@
 
         <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/sb-admin.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('gridstack/dist/gridstack.min.css') }}">
+        
 
         <script src="{{ URL::asset('js/dependencies.js') }}"></script>
         <script src="{{ URL::asset('js/loader.js') }}"></script>
@@ -15,10 +17,12 @@
         <script src="{{ URL::asset('reflect-metadata/Reflect.js') }}"></script>
         <script src="{{ URL::asset('systemjs/dist/system.src.js') }}"></script>
         <script src="{{ URL::asset('systemjs.config.js') }}"></script>
+        <script src="{{ URL::asset('ng2-charts/bundles/ng2-charts.js') }}"></script>
+        <script src="{{ URL::asset('gridstack/dist/gridstack.min.js') }}"></script>
 
         <script>
             System.import('app').catch(function(err) { 
-                    console.error(err); 
+                console.error(err); 
             });
         </script>
     </head>
@@ -29,14 +33,11 @@
             @include('shared.navigation')
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    @section('content')
-                    @show
                     <my-app>Loading...</my-app>
                 </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- /#page-wrapper -->
         </div>
-
     </body>
 </html>

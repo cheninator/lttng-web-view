@@ -14,7 +14,7 @@
 Route::get('/charts/{name}', function ($name) {
     
     $name = str_replace(':', '/', $name);
-    $filePath = "../resources/lttng-parser/result/{$name}";
+    $filePath = "../resources/lttng-parser/resultjs/{$name}";
     return file_get_contents($filePath);
 });
 
