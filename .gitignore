@@ -1,5 +1,13 @@
 /node_modules
+
 /public/storage
+/public/@angular
+/public/core-js
+/public/fonts
+/public/ng2-charts
+/public/rxjs
+/public/systemjs
+
 /vendor
 /.idea
 Homestead.json
