@@ -1,5 +1,7 @@
 /node_modules
 
+*.js.map
+
 /public/storage
 /public/@angular
 /public/core-js
