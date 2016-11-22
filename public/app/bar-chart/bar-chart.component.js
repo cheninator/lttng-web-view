@@ -25,7 +25,7 @@ System.register(['@angular/core', './chart.service'], function(exports_1, contex
                 function BarChartComponent(_chartService) {
                     this._chartService = _chartService;
                     this.type = 'bar';
-                    this.legend = true;
+                    this.legend = false;
                     this.options = {
                         scaleShowVerticalLines: false,
                         responsive: true
@@ -45,12 +45,10 @@ System.register(['@angular/core', './chart.service'], function(exports_1, contex
                         _this.datasets = chart.datasets;
                     });
                 };
-                // events
+                // Events
                 BarChartComponent.prototype.chartClicked = function (e) {
-                    //console.log(e);
                 };
                 BarChartComponent.prototype.chartHovered = function (e) {
-                    //console.log(e);
                 };
                 __decorate([
                     core_1.Input(), 

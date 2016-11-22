@@ -11,7 +11,7 @@ export class BarChartComponent implements OnInit {
     @Input() name: string;
     
     public type: string = 'bar';
-    public legend: boolean = true;
+    public legend: boolean = false;
     public labels: string[];
     public datasets: any[];
     public options: any = {
@@ -40,12 +40,10 @@ export class BarChartComponent implements OnInit {
             );
     }
 
-    // events
-    public chartClicked(e:any):void {
-        //console.log(e);
+    // Events
+    public chartClicked(e:any): void {
     }
 
-    public chartHovered(e:any):void {
-        //console.log(e);
+    public chartHovered(e:any): void {
     }
 }

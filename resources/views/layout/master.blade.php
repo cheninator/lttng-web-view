@@ -1,5 +1,6 @@
 <html>
     <head>
+        <base href="/"></base>
         <meta charset="utf-8">
         <title>LTTng Web View</title>
 
@@ -31,16 +32,6 @@
     </head>
 
     <body>
-        <div id="wrapper">
-            <!-- Navigation -->
-            @include('shared.navigation')
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <my-app>Loading...</my-app>
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /#page-wrapper -->
-        </div>
+        <my-app>Loading...</my-app>
     </body>
 </html>

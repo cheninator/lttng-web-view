@@ -1,16 +1,56 @@
-<!--
-<div class="row">
-    <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Apache - Top request duration</h3>
-            </div>
-            <div class="panel-body">
-                <bar-chart [name]="'lamptop:Database-Duration'"></bar-chart>
+<div id="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">LTTng Web View</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a [routerLink]="['/main']"><i class="fa fa-fw fa-dashboard"></i> Main dashboard</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/apache']"><i class="fa fa-fw fa-bar-chart-o"></i> Apache</a>
+                </li>
+                <li>
+                    <a href="/mysql"><i class="fa fa-fw fa-table"></i> MySQL</a>
+                </li>
+                <li>
+                    <a href="/php"><i class="fa fa-fw fa-file-code-o "></i> PHP</a>
+                </li>
+                <li>
+                    <a href="/cpu-usage"><i class="fa fa-fw fa-desktop"></i> CPU Usage</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> I/O Dashboard<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="/io-usage"><i class="fa fa-fw fa-file"></i> I/O Usage</a>
+                        </li>
+                        <li>
+                            <a href="/io-latency"><i class="fa fa-fw fa-line-chart"></i> I/O Latency</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/lttng-io-latency"><i class="fa fa-fw fa-line-chart"></i> LTTng I/O Latency</a>
+                </li>
+            </ul>
+            <router-outlet></router-outlet>
+        </div>
+    </nav>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">TEST</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
--->
-
-<gridstack></gridstack>

@@ -1,5 +1,5 @@
 ///<reference path="../../../../typings/index.d.ts"/>
-System.register(['@angular/core', '@angular/platform-browser', 'ng2-charts/ng2-charts', '@angular/http', './app.component', './../bar-chart/bar-chart.component', './../gridstack/gridstack.component'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/platform-browser', 'ng2-charts/ng2-charts', '@angular/http', '@angular/router', './app.component', './../bar-chart/bar-chart.component', './../gridstack/gridstack.component', './../main-dashboard/main-dashboard.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['@angular/core', '@angular/platform-browser', 'ng2-charts/ng2-c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, platform_browser_1, ng2_charts_1, http_1, app_component_1, bar_chart_component_1, gridstack_component_1;
+    var core_1, platform_browser_1, ng2_charts_1, http_1, router_1, app_component_1, bar_chart_component_1, gridstack_component_1, main_dashboard_component_1;
     var AppModule;
     return {
         setters:[
@@ -27,6 +27,9 @@ System.register(['@angular/core', '@angular/platform-browser', 'ng2-charts/ng2-c
             function (http_1_1) {
                 http_1 = http_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (app_component_1_1) {
                 app_component_1 = app_component_1_1;
             },
@@ -35,6 +38,9 @@ System.register(['@angular/core', '@angular/platform-browser', 'ng2-charts/ng2-c
             },
             function (gridstack_component_1_1) {
                 gridstack_component_1 = gridstack_component_1_1;
+            },
+            function (main_dashboard_component_1_1) {
+                main_dashboard_component_1 = main_dashboard_component_1_1;
             }],
         execute: function() {
             AppModule = (function () {
@@ -45,12 +51,16 @@ System.register(['@angular/core', '@angular/platform-browser', 'ng2-charts/ng2-c
                         imports: [
                             platform_browser_1.BrowserModule,
                             ng2_charts_1.ChartsModule,
-                            http_1.HttpModule
+                            http_1.HttpModule,
+                            router_1.RouterModule.forRoot([
+                                { path: 'main', component: main_dashboard_component_1.MainDashboardComponent }
+                            ], { useHash: true })
                         ],
                         declarations: [
                             app_component_1.AppComponent,
                             bar_chart_component_1.BarChartComponent,
-                            gridstack_component_1.GridStackComponent
+                            gridstack_component_1.GridStackComponent,
+                            main_dashboard_component_1.MainDashboardComponent
                         ],
                         bootstrap: [app_component_1.AppComponent]
                     }), 
