@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="{{ URL::asset('gridstack/dist/gridstack.min.css') }}">
 
         <script src="{{ URL::asset('jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ URL::asset('chart.js/dist/Chart.min.js') }}"></script>
+        <script src="{{ URL::asset('chartjs/dist/Chart.min.js') }}"></script>
         <script src="{{ URL::asset('bootstrap/assets/javascripts/bootstrap.js') }}"></script>
 
         <script src="{{ URL::asset('js/loader.js') }}"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
 
         <script src="{{ URL::asset('core-js/client/shim.min.js') }}"></script>
-        <script src="{{ URL::asset('zone.js/dist/zone.js') }}"></script>
+        <script src="{{ URL::asset('zonejs/dist/zone.js') }}"></script>
         <script src="{{ URL::asset('reflect-metadata/Reflect.js') }}"></script>
         <script src="{{ URL::asset('systemjs/dist/system.src.js') }}"></script>
         <script src="{{ URL::asset('systemjs.config.js') }}"></script>

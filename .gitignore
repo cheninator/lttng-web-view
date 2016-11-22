@@ -13,7 +13,8 @@
 /public/gridstack
 /public/bootstrap
 /public/jquery
-/public/chart.js
+/public/chartjs
+/public/zonejs
 
 /vendor
 /.idea
