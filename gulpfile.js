@@ -26,17 +26,12 @@ elixir(mix => {
 	.copy('node_modules/zone.js', 'public/zone.js')
 	.copy('node_modules/ng2-charts', 'public/ng2-charts')
 	.copy('node_modules/font-awesome/fonts', 'public/fonts')
-
+	.copy('node_modules/gridstack', 'public/gridstack')
+	.copy('node_modules/jquery-ui-dist', 'public/jquery-ui-dist')
+	.copy('node_modules/jquery', 'public/jquery')
+	.copy('node_modules/chart.js', 'public/chart.js')
+	.copy('node_modules/bootstrap-sass', 'public/bootstrap')
 	.copy('resources/assets/templates', 'public/views')	
-	.scripts(
-		[
-			'jquery/dist/jquery.min.js',
-			'bootstrap-sass-official/assets/javascripts/bootstrap.js',
-			'chart.js/dist/Chart.min.js',
-		],
-		'public/js/dependencies.js',
-		'node_modules'
-	)
 	.typescript(
 		[
 		    '**/*.ts'

@@ -12,8 +12,8 @@ export class GridStackComponent implements OnInit {
     public ngOnInit(): void {
 
         var options = {
-            cell_height: 80,
-            vertical_margin: 10
+            cellHeight: 80,
+            verticalMargin: 10
         };
 
         $('.grid-stack').gridstack(options);
