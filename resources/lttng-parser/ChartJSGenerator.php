@@ -161,9 +161,22 @@
 		}
 	}
 
-	if(count($argv) > 1)
+	$log_directory = "data";
+	$files = array();
+
+	foreach(glob($log_directory.'/*.*') as $file) 
 	{
-		$inputfilename = "data/{$argv[1]}";
-		$chartGenerator = new ChartJSGenerator();
-		$chartGenerator->generateCharts($inputfilename);
+		$inputfilename = explode(".", $file);
+
+		if(!in_array($inputfilename[0], $files))
+		{
+			array_push($files, $inputfilename[0]);
+		}
 	}
+
+	foreach($files as $name)
+	{
+		$chartGenerator = new ChartJSGenerator();
+		$chartGenerator->generateCharts($name);
+	}
+	
