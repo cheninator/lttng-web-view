@@ -1,21 +1,14 @@
 {
   "_args": [
     [
-      {
-        "raw": "@angular/platform-browser@2.0.0",
-        "scope": "@angular",
-        "escapedName": "@angular%2fplatform-browser",
-        "name": "@angular/platform-browser",
-        "rawSpec": "2.0.0",
-        "spec": "2.0.0",
-        "type": "version"
-      },
+      "@angular/platform-browser@2.0.0",
       "/home/yonni/Documents/lttng-web-view"
     ]
   ],
   "_from": "@angular/platform-browser@2.0.0",
   "_id": "@angular/platform-browser@2.0.0",
   "_inCache": true,
+  "_installable": true,
   "_location": "/@angular/platform-browser",
   "_nodeVersion": "5.4.1",
   "_npmOperationalInternal": {
@@ -23,17 +16,16 @@
     "tmp": "tmp/platform-browser-2.0.0.tgz_1473906755245_0.3851516761351377"
   },
   "_npmUser": {
-    "name": "angular",
-    "email": "angular-core+npm@google.com"
+    "email": "angular-core+npm@google.com",
+    "name": "angular"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "@angular/platform-browser@2.0.0",
-    "scope": "@angular",
-    "escapedName": "@angular%2fplatform-browser",
     "name": "@angular/platform-browser",
+    "raw": "@angular/platform-browser@2.0.0",
     "rawSpec": "2.0.0",
+    "scope": "@angular",
     "spec": "2.0.0",
     "type": "version"
   },
@@ -72,8 +64,8 @@
   "name": "@angular/platform-browser",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/core": "^2.0.0",
-    "@angular/common": "^2.0.0"
+    "@angular/common": "^2.0.0",
+    "@angular/core": "^2.0.0"
   },
   "readme": "ERROR: No README data found!",
   "repository": {

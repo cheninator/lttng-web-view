@@ -1,21 +1,14 @@
 {
   "_args": [
     [
-      {
-        "raw": "@angular/compiler@2.0.0",
-        "scope": "@angular",
-        "escapedName": "@angular%2fcompiler",
-        "name": "@angular/compiler",
-        "rawSpec": "2.0.0",
-        "spec": "2.0.0",
-        "type": "version"
-      },
+      "@angular/compiler@2.0.0",
       "/home/yonni/Documents/lttng-web-view"
     ]
   ],
   "_from": "@angular/compiler@2.0.0",
   "_id": "@angular/compiler@2.0.0",
   "_inCache": true,
+  "_installable": true,
   "_location": "/@angular/compiler",
   "_nodeVersion": "5.4.1",
   "_npmOperationalInternal": {
@@ -23,17 +16,16 @@
     "tmp": "tmp/compiler-2.0.0.tgz_1473906733963_0.030384444165974855"
   },
   "_npmUser": {
-    "name": "angular",
-    "email": "angular-core+npm@google.com"
+    "email": "angular-core+npm@google.com",
+    "name": "angular"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "@angular/compiler@2.0.0",
-    "scope": "@angular",
-    "escapedName": "@angular%2fcompiler",
     "name": "@angular/compiler",
+    "raw": "@angular/compiler@2.0.0",
     "rawSpec": "2.0.0",
+    "scope": "@angular",
     "spec": "2.0.0",
     "type": "version"
   },

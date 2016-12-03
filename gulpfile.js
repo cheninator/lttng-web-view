@@ -31,7 +31,7 @@ elixir(mix => {
 	.copy('node_modules/jquery', 'public/jquery')
 	.copy('node_modules/chart.js', 'public/chartjs')
 	.copy('node_modules/bootstrap-sass', 'public/bootstrap')
-	.copy('resources/assets/templates', 'public/views')	
+	.copy('resources/templates', 'public/views')	
 	.typescript(
 		[
 		    '**/*.ts'

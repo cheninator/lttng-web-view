@@ -12,33 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/apache', function () {
-    return view('Apache.index');
-});
-
-Route::get('/mysql', function () {
-    return view('MySQL.index');
-});
-
-Route::get('/php', function () {
-    return view('PHP.index');
-});
-
-Route::get('/cpu-usage', function () {
-    return view('CPU.index');
-});
-
-Route::get('/io-usage', function () {
-    return view('IO.usage');
-});
-
-Route::get('/io-latency', function () {
-    return view('IO.latency');
-});
-
-Route::get('lttng-io-latency', function () {
-    return view('LTTng.io_latency');
+    return view('index');
 });

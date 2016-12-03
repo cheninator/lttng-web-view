@@ -7,6 +7,8 @@ declare var $: any;
 })
 export class GridStackComponent implements OnInit {
 
+    private 
+
     constructor() { }
 
     public ngOnInit(): void {

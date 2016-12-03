@@ -24,7 +24,7 @@ System.register(['@angular/core', './chart.service'], function(exports_1, contex
             BarChartComponent = (function () {
                 function BarChartComponent(_chartService) {
                     this._chartService = _chartService;
-                    this.type = 'bar';
+                    this.type = 'horizontalBar';
                     this.legend = false;
                     this.options = {
                         scaleShowVerticalLines: false,

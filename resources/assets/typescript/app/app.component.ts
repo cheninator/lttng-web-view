@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ChartService } from './../bar-chart/chart.service';
+import { ChartService } from './../charts/chart.service';
 
 @Component({
-	selector: 'my-app',
+	selector: 'app',
 	templateUrl: './views/app/app.component.html',
 	providers: [ ChartService ]
 })
