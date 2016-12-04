@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ChartGridItem } from './gridstack.model';
+
 declare var $: any;
 
 @Component({
@@ -6,13 +8,16 @@ declare var $: any;
     templateUrl: './views/gridstack/gridstack.component.html',
 })
 export class GridStackComponent implements OnInit {
-
-    private 
+    
+    @Input() gridItems: ChartGridItem[]; 
 
     constructor() { }
 
     public ngOnInit(): void {
 
+    }
+
+    public ngAfterViewInit() {
         var options = {
             cellHeight: 80,
             verticalMargin: 10

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChartService } from './../charts/chart.service';
+import { ChartService } from './../chart/chart.service';
 
 @Component({
 	selector: 'app',

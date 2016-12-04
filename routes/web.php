@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/templates/{folder}/{name}', function ($folder, $name) {
+    $filePath = "../resources/templates/{$folder}/{$name}";
+    return file_get_contents($filePath);
+});

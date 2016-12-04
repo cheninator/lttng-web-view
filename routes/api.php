@@ -17,4 +17,3 @@ Route::get('/charts/{name}', function ($name) {
     $filePath = "../resources/lttng-parser/resultjs/{$name}";
     return file_get_contents($filePath);
 });
-

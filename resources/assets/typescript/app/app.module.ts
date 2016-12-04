@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent }   from './app.component';
-import { BarChartComponent } from './../charts/bar/bar-chart.component';
+import { ChartComponent } from './../chart/chart.component';
 import { GridStackComponent } from './../gridstack/gridstack.component';
 import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
 
@@ -21,7 +21,7 @@ import { MainDashboardComponent } from './../main-dashboard/main-dashboard.compo
 	],
 	declarations: [ 
 		AppComponent, 
-		BarChartComponent,
+		ChartComponent,
 		GridStackComponent,
 		MainDashboardComponent
 	],

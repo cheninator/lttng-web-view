@@ -1,41 +1,13 @@
 <div class="grid-stack">
-    <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="6" data-gs-height="5">
+    <div class="grid-stack-item" *ngFor="let gridItem of gridItems" [attr.data-gs-x]="gridItem.dataGsX" [attr.data-gs-y]="gridItem.dataGsY" [attr.data-gs-width]="gridItem.dataGsWidth" [attr.data-gs-height]="gridItem.dataGsHeight">
         <div class="panel panel-info grid-stack-item-content">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Apache - Top request duration</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> {{ gridItem.title }}
+                    <a class="pull-right"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </h3>
             </div>
             <div class="panel-body">
-                <bar-chart [name]="'lamptop:Request_ID-Duration'"></bar-chart>
-            </div>
-        </div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="6" data-gs-y="0" data-gs-width="6" data-gs-height="5">
-        <div class="panel panel-default grid-stack-item-content">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> PHP - Top request duration</h3>
-            </div>
-            <div class="panel-body">
-                <bar-chart [name]="'lamptop:Request_ID-PHP_Execution_Duration'"></bar-chart>
-            </div>
-        </div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="0" data-gs-y="5" data-gs-width="6" data-gs-height="5">
-        <div class="panel panel-default grid-stack-item-content">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> MySQL - Top table duration</h3>
-            </div>
-            <div class="panel-body">
-                <bar-chart [name]="'mysql:Table-Duration'"></bar-chart>
-            </div>
-        </div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="6" data-gs-y="5" data-gs-width="6" data-gs-height="5">
-        <div class="panel panel-info grid-stack-item-content">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> CPU - Usage per core</h3>
-            </div>
-            <div class="panel-body">
-                <bar-chart [name]="'cpuusage:CPU-CPU_usage'"></bar-chart>
+                <chart [name]="gridItem.name" [type]="gridItem.chartType"></chart>
             </div>
         </div>
     </div>
