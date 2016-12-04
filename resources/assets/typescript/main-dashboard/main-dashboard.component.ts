@@ -3,7 +3,7 @@ import { ChartGridItem } from './../gridstack/gridstack.model';
 
 @Component({
     selector: 'main-dashboard',
-    templateUrl: './views/main-dashboard/main-dashboard.component.html',
+    templateUrl: './templates/main-dashboard/main-dashboard.component.html',
 })
 export class MainDashboardComponent {
 

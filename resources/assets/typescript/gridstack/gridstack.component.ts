@@ -5,7 +5,7 @@ declare var $: any;
 
 @Component({
     selector: 'gridstack',
-    templateUrl: './views/gridstack/gridstack.component.html',
+    templateUrl: '/templates/gridstack/gridstack.component.html',
 })
 export class GridStackComponent implements OnInit {
     

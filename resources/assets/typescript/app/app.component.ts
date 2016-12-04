@@ -3,7 +3,7 @@ import { ChartService } from './../chart/chart.service';
 
 @Component({
 	selector: 'app',
-	templateUrl: './views/app/app.component.html',
+	templateUrl: '/templates/app/app.component.html',
 	providers: [ ChartService ]
 })
 
