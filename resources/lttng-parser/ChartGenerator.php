@@ -33,7 +33,7 @@
 				for($i = 0; $i < count($entry->data); ++$i)
 				{
 					$first = $entry->data[$i];
-					$type = GoogleChart::getClassType($first->column->class);
+					$type = LTTngParser::getClassType($first->column->class);
 
 					if(!empty($first->values) && !strcmp($type, "string"))
 					{						
@@ -45,7 +45,7 @@
 							}
 
 							$second = $entry->data[$j];
-							$type = GoogleChart::getClassType($second->column->class);
+							$type = LTTngParser::getClassType($second->column->class);
 
 							if(!empty($second->values))
 							{
@@ -82,7 +82,7 @@
 			$chartColumn = new GoogleChartColumn();
 			$chartColumn->id = "";
 			$chartColumn->label = $dataColumn->title;
-			$chartColumn->type = GoogleChart::getClassType($dataColumn->class);
+			$chartColumn->type = LTTngParser::getClassType($dataColumn->class);
 			$chartColumn->role = "";
 			$chartColumn->pattern = "";
 			$googleChart->addColumn($chartColumn);

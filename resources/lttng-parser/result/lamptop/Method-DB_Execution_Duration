@@ -1,1 +1,0 @@
-{"cols":[{"id":"","label":"Method","type":"string","role":"","pattern":""},{"id":"","label":"DB Execution Duration","type":"number","role":"","pattern":""}],"rows":[{"c":[{"v":"GET","f":null,"p":null},{"v":0,"f":"0 (usec)","p":null}]},{"c":[{"v":"GET","f":null,"p":null},{"v":0,"f":"0 (usec)","p":null}]},{"c":[{"v":"GET","f":null,"p":null},{"v":0,"f":"0 (usec)","p":null}]}]}

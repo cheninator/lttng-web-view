@@ -5,8 +5,6 @@
 	require_once("parser/DataColumn.php");
 	require_once("parser/Data.php");
 
-    require_once("google/GoogleChart.php");
-
     require_once("chartjs/ChartJS.php");
     require_once("chartjs/ChartJSDataSet.php");
     
@@ -33,7 +31,7 @@
 				for($i = 0; $i < count($entry->data); ++$i)
 				{
 					$first = $entry->data[$i];
-					$type = GoogleChart::getClassType($first->column->class);
+					$type = LTTngParser::getClassType($first->column->class);
 
 					if(!empty($first->values) && !strcmp($type, "string"))
 					{						
@@ -45,13 +43,18 @@
 							}
 
 							$second = $entry->data[$j];
-							$type = GoogleChart::getClassType($second->column->class);
+							$type = LTTngParser::getClassType($second->column->class);
 
 							if(!empty($second->values))
 							{
 								$chartJs = new ChartJS();
-                                $chartJs->setFirstColumnName($first->column->title);
-                                $chartJs->setSecondColumnName($second->column->title);
+                                $chartJs->firstColumnName = $first->column->title;
+                                $chartJs->secondColumnName = $second->column->title;
+
+								if(isset($entry->threadId))
+								{
+									$chartJs->threadId = $entry->threadId;
+								}
 
                                 $this->buildChart($first, $second, $chartJs);
 							}
@@ -148,15 +151,21 @@
 				$chart = $this->charts[$i];
 				$content = json_encode($chart);
 
-				$firstColName = $chart->getFirstColumnName();
-				$secondColName = $chart->getSecondColumnName();
-
-				$fileName = "{$firstColName}-{$secondColName}";
-			
+				$fileName = "{$chart->firstColumnName}-{$chart->secondColumnName}";
 				$fileName = str_replace(' ', '_', $fileName);
 				$fileName = str_replace('/', '_', $fileName);
 
-				file_put_contents("resultjs/{$folder}/{$fileName}", $content);
+				if(isset($chart->threadId))
+				{
+					if(!file_exists("resultjs/{$folder}/{$chart->threadId}"))
+					{
+						mkdir("resultjs/{$folder}/{$chart->threadId}");
+					}
+
+					$fileName = "{$chart->threadId}/{$fileName}";
+				}
+
+				file_put_contents("resultjs/{$folder}/{$fileName}", $content);				
 			}
 		}
 	}
@@ -164,6 +173,9 @@
 	$log_directory = "data";
 	$files = array();
 
+	$chartGenerator = new ChartJSGenerator();
+	$chartGenerator->generateCharts("data/phptop");
+/*
 	foreach(glob($log_directory.'/*.*') as $file) 
 	{
 		$inputfilename = explode(".", $file);
@@ -179,4 +191,4 @@
 		$chartGenerator = new ChartJSGenerator();
 		$chartGenerator->generateCharts($name);
 	}
-	
+	*/

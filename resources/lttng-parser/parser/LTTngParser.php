@@ -58,16 +58,44 @@
 			$data = json_decode($fileContent, true);
 
 			$results = $data[MetadataName::Results];
+			$isCloned = false;
 
 			foreach($results as $result)
 			{
+				$isCloned = false;
+
 				$class = $result[MetadataName::ClassName];
 
 				// If we have an inherit class data
 				$metadata = isset($class[MetadataName::Inherit]) ? $class[MetadataName::Inherit] : $class;
 
+				// Check title after
+				$title = isset($class[MetadataName::Title]) ? $class[MetadataName::Title] : null;
+
 				// Get the intermediate entry object
 				$intermediateEntry = $this->intermediateData->getEntry($metadata);
+
+				// We have an inherit data, possibly a thread
+				if(!is_null($title) && $intermediateEntry->title != $title) 
+				{
+					$originalTitle = $intermediateEntry->title;
+					$diff = strlen($title) - strlen($originalTitle);
+
+					$intermediateEntry = clone $intermediateEntry;
+					$isCloned = true;
+
+					$intermediateEntry->title = $title;
+					$intermediateEntry->threadId = substr($title, strlen($originalTitle) + 1, $diff);
+				}
+
+				// If we have a time-range property
+				$timeRange = isset($class[MetadataName::TimeRange]) ? $class[MetadataName::TimeRange] : null;
+
+				if(!is_null($timeRange))
+				{
+					$intermediateEntry->startingTime = $timeRange[MetadataName::Begin][MetadataName::Value];
+					$intermediateEntry->endingTime = $timeRange[MetadataName::End][MetadataName::Value];
+				}
 
 				// Treat data
 				foreach ($result[MetadataName::Data] as $data) 
@@ -77,6 +105,11 @@
 						$intermediateEntry->data[$i]->addValue($data[$i]);
 					}
 				}
+
+				if($isCloned) 
+				{
+					$this->intermediateData->addEntry($intermediateEntry);
+				}
 			}
 		}
 
@@ -84,7 +117,35 @@
 		{
 			$this->readMetadata();
 			$this->readData();
-			// echo $this->intermediateData->toJSON();
+			// echo $this->intermediateData->toJSON();	
+		}
+
+		public static function getClassType($class)
+		{
+			$val = $class;
+
+			switch($class)
+			{
+				case "process":
+				case "disk":
+				case "cpu":
+				case "path":
+				case "mysql":
+				case "mysqlthreads":
+				case "syscall":
+				case "fd":
+					$val = "string";
+					break;
+
+				case "ratio":
+				case "duration":
+				case "int":
+				case "size":
+					$val = "number";
+					break;
+			}
+
+			return $val;
 		}
 
 		public function getIntermediateData()

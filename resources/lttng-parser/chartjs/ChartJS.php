@@ -2,10 +2,11 @@
 	
 	require_once("ChartJSDataSet.php");
 	
-	class ChartJS 
+	class ChartJS implements JsonSerializable
 	{
-        private $firstColumnName;
-        private $secondColumnName;
+        public $firstColumnName;
+        public $secondColumnName;
+		public $threadId;
 
 		public $labels;
 		public $datasets;
@@ -26,23 +27,11 @@
 			array_push($this->datasets, $dataset);
 		}
 
-        public function setFirstColumnName($name)
+		public function jsonSerialize() 
         {
-            $this->firstColumnName = $name;
-        }
-
-        public function setSecondColumnName($name)
-        {
-            $this->secondColumnName = $name;
-        }
-
-        public function getFirstColumnName()
-        {
-            return $this->firstColumnName;
-        }
-
-        public function getSecondColumnName()
-        {
-            return $this->secondColumnName;
+            return [
+				"labels" => $this->labels,
+				"datasets" => $this->datasets,
+			];
         }
 	}

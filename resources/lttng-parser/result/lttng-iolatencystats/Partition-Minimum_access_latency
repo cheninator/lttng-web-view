@@ -1,1 +1,0 @@
-{"cols":[{"id":"","label":"Partition","type":"string","role":"","pattern":""},{"id":"","label":"Minimum access latency","type":"number","role":"","pattern":""}],"rows":[{"c":[{"v":"(8,32)","f":null,"p":null},{"v":100588,"f":null,"p":null}]}]}

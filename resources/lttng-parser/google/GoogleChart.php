@@ -15,34 +15,6 @@
 			$this->rows = array();
 		}
 
-		public static function getClassType($class)
-		{
-			$val = $class;
-
-			switch($class)
-			{
-				case "process":
-				case "disk":
-				case "cpu":
-				case "path":
-				case "mysql":
-				case "mysqlthreads":
-				case "syscall":
-				case "fd":
-					$val = "string";
-					break;
-
-				case "ratio":
-				case "duration":
-				case "int":
-				case "size":
-					$val = "number";
-					break;
-			}
-
-			return $val;
-		}
-
 		public function setTitle($title)
 		{
 			$this->title = $title;

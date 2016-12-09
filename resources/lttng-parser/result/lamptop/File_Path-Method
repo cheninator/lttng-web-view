@@ -1,1 +1,0 @@
-{"cols":[{"id":"","label":"File Path","type":"string","role":"","pattern":""},{"id":"","label":"Method","type":"string","role":"","pattern":""}],"rows":[{"c":[{"v":"127.0.0.1","f":null,"p":null},{"v":"GET","f":null,"p":null}]},{"c":[{"v":"127.0.0.1","f":null,"p":null},{"v":"GET","f":null,"p":null}]},{"c":[{"v":"127.0.0.1","f":null,"p":null},{"v":"GET","f":null,"p":null}]}]}

@@ -17,4 +17,7 @@
 		const ID = "id";
 		const Unit = "unit";
 		const Results = "results";
+		const TimeRange = "time-range";
+		const Begin = "begin";
+		const End = "end";
 	}
