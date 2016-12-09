@@ -1,1 +1,1 @@
-{"labels":["GET","GET","GET"],"datasets":[{"label":"Request ID","data":[23562,23563,23564],"backgroundColor":null,"borderColor":null,"borderWidth":null}]}
+{"labels":["GET","GET","GET","POST","GET","GET","GET","GET"],"datasets":[{"label":"Request ID","data":[890,853,860,858,857,859,863,1375],"backgroundColor":null,"borderColor":null,"borderWidth":null}]}

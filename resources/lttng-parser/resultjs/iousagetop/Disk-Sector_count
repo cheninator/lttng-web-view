@@ -1,1 +1,1 @@
-{"labels":["(8,32)"],"datasets":[{"label":null,"data":[{"column":{"title":"Sector count","class":"int","unit":"sectors"},"values":[234528]}],"backgroundColor":null,"borderColor":null,"borderWidth":null}]}
+{"labels":["sdc1"],"datasets":[{"label":"Sector count","data":[95256],"backgroundColor":null,"borderColor":null,"borderWidth":null}]}
