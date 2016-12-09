@@ -24,6 +24,10 @@
         <script src="{{ URL::asset('gridstack/dist/gridstack.min.js') }}"></script>
         <script src="{{ URL::asset('jquery-ui-dist/jquery-ui.min.js') }}"></script>
 
+        <script src="{{ URL::asset('d3/d3.min.js') }}"></script>
+        <script src="{{ URL::asset('d3-tip/index.js') }}"></script>
+        <script src="{{ URL::asset('d3-flame-graph/src/d3.flameGraph.js') }}"></script>
+
         <script>
             System.import('app').catch(function(err) { 
                 console.error(err); 

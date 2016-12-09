@@ -21,9 +21,6 @@
 /public/d3-tip/
 /public/d3/
 
-/resources/lttng-parser/resultjs/
-/resources/lttng-parser/data/
-
 /vendor
 /.idea
 Homestead.json
