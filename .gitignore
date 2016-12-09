@@ -17,6 +17,12 @@
 /public/jquery
 /public/chartjs
 /public/zonejs
+/public/d3-flame-graph/
+/public/d3-tip/
+/public/d3/
+
+/resources/lttng-parser/resultjs/
+/resources/lttng-parser/data/
 
 /vendor
 /.idea

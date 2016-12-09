@@ -11,6 +11,7 @@ import { AppComponent }   from './app.component';
 import { ChartComponent } from './../chart/chart.component';
 import { GridStackComponent } from './../gridstack/gridstack.component';
 import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
+import { FlamegraphComponent } from './../flamegraph/flamegraph.component';
 
 @NgModule({
 	imports: [ 
@@ -23,7 +24,8 @@ import { MainDashboardComponent } from './../main-dashboard/main-dashboard.compo
 		AppComponent, 
 		ChartComponent,
 		GridStackComponent,
-		MainDashboardComponent
+		MainDashboardComponent,
+		FlamegraphComponent
 	],
 	bootstrap:    [ AppComponent ]
 })

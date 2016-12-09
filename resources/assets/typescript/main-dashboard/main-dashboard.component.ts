@@ -33,7 +33,7 @@ export class MainDashboardComponent {
             {
                 title: "MySQL - Top table duration",
                 chartType: "horizontalBar",
-                name: "mysql:Table-Duration",
+                name: "mysqltop:Table-Duration",
                 dataGsX: 0,
                 dataGsY: 5,
                 dataGsWidth: 6,
@@ -42,7 +42,16 @@ export class MainDashboardComponent {
             {
                 title: "CPU - Usage per core",
                 chartType: "horizontalBar",
-                name: "cpuusage:CPU-CPU_usage",
+                name: "cputop:CPU-CPU_usage",
+                dataGsX: 6,
+                dataGsY: 5,
+                dataGsWidth: 6,
+                dataGsHeight: 5,
+            },
+            {
+                title: "PHP - Functions execution",
+                chartType: "horizontalBar",
+                name: "phptop:Function_Name-Function_duration",
                 dataGsX: 0,
                 dataGsY: 10,
                 dataGsWidth: 6,

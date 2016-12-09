@@ -31,6 +31,9 @@ elixir(mix => {
 	.copy('node_modules/jquery', 'public/jquery')
 	.copy('node_modules/chart.js', 'public/chartjs')
 	.copy('node_modules/bootstrap-sass', 'public/bootstrap')
+	.copy('node_modules/d3', 'public/d3')
+	.copy('node_modules/d3-tip', 'public/d3-tip')	
+	.copy('node_modules/d3-flame-graph', 'public/d3-flame-graph')
 	.typescript(
 		[
 		    '**/*.ts'

@@ -35,8 +35,9 @@ export class ChartComponent implements OnInit {
         this._chartService.getChart(this.name)
             .subscribe(
                 (chart) => {
-                    this.labels = chart.labels;
-                    this.datasets = chart.datasets;                   
+                    this.labels = chart.labels.slice(0, 8);
+                    this.datasets = chart.datasets;
+                    this.datasets[0].data = this.datasets[0].data.slice(0, 8);
                 }
             );
     }
