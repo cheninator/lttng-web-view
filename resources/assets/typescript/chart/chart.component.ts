@@ -9,8 +9,11 @@ import { IChart } from './chart.model';
 export class ChartComponent implements OnInit {
 
     @Input() name: string;
-    @Input() type: string= 'horizontalBar';
+    @Input() type: string = 'horizontalBar';
     
+    @Input() count: number = 0;
+    @Input() sort: string = "";
+
     public legend: boolean = false;
     public labels: string[];
     public datasets: any[];
@@ -32,12 +35,17 @@ export class ChartComponent implements OnInit {
 
     public ngOnInit(): void {
 
-        this._chartService.getChart(this.name)
+        let body = {
+            name: this.name,
+            count: this.count,
+            sort: this.sort
+        };
+
+        this._chartService.getChartData(body)
             .subscribe(
                 (chart) => {
-                    this.labels = chart.labels.slice(0, 8);
+                    this.labels = chart.labels;
                     this.datasets = chart.datasets;
-                    this.datasets[0].data = this.datasets[0].data.slice(0, 8);
                 }
             );
     }

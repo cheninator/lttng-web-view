@@ -31,7 +31,7 @@
 			$parser->parse();
 
 			$intermediateData = $parser->getIntermediateData();
-/*
+
 			foreach($intermediateData->getEntries() as $entry)
 			{
                 // Ignore other tableclasses
@@ -62,12 +62,17 @@
 					
 					$root = new Flamegraph();
 					$root->name = "root";
-                    $root->value = 27439557120;
+                    $root->value = ($entry->endingTime - $entry->startingTime);
 
-					$years = (1479945956012668814 / self::nanosecondsInYear);
-					$start = 1479945956012668814 - ($years * self::nanosecondsInYear);
-					$root->setStartingTimestamp($start);
-					$root->setEndingTimestamp($start + $root->value);
+					if(isset($entry->threadId))
+					{
+						$root->threadId = $entry->threadId;
+					}
+
+					$years = ($entry->startingTime / self::nanosecondsInYear);
+					$start = $entry->startingTime - ($years * self::nanosecondsInYear);
+					$root->startingTimestamp = $start;
+					$root->endingTimestamp = ($start + $root->value);
 
 					$parents = array();
 					array_push($parents, $root);
@@ -85,18 +90,18 @@
 							$child = new Flamegraph();
 							$child->name = $this->functionNameData->values[$currentDataIndex][MetadataName::Name];
 							$child->value = $this->functionDurationData->values[$currentDataIndex][MetadataName::Value];
-
+							
 							$years = ($this->startingTimestampData->values[$currentDataIndex][MetadataName::Value] / self::nanosecondsInYear);
 							$start = $this->startingTimestampData->values[$currentDataIndex][MetadataName::Value] - ($years * self::nanosecondsInYear);
 
-							$child->setStartingTimestamp($start);
-							$child->setEndingTimestamp($start + $child->value);
+							$child->startingTimestamp = $start;
+							$child->endingTimestamp = ($start + $child->value);
 
 							$counting = count($parents) - $childCount;
 							for($j = $lastParent; $j < $counting; ++$j)
 							{
 								$currentNode = $parents[$j];
-								if($currentNode->getEndingTimestamp() >= $child->getStartingTimestamp()) 
+								if($currentNode->endingTimestamp >= $child->startingTimestamp) 
 								{
 									$currentNode->addChildren($child);
 									++$childCount;
@@ -120,39 +125,12 @@
 
 						++$lastDepth;
 					}
-					file_put_contents("test.json", json_encode($root));
+					array_push($this->charts, $root);
                 }
 			}
-			// $this->generateFiles();*/
+
+			$this->generateFiles();
 		}
-
-        private function buildTree(Flamegraph &$flamegraph, $level, $parentEndingTimestamp, &$visited)
-        {
-            $count = count($this->functionNameData->values);
-            for($i = 0; $i < $count; ++$i) 
-            {	
-                $currentLevel = $this->indentData->values[$i][MetadataName::Value];
-                $currentStartingTimestamp = $this->startingTimestampData->values[$i][MetadataName::Value];
-				
-                if($currentLevel == $level && ($currentStartingTimestamp <= $parentEndingTimestamp || $level == 1) && !$visited[$i])
-				{
-                    $flamegraph->name = $this->functionNameData->values[$i][MetadataName::Name];
-                    $flamegraph->value = $this->functionDurationData->values[$i][MetadataName::Value];
-                    $flamegraph->setStartingTimestamp($this->startingTimestampData->values[$i][MetadataName::Value]);
-                    
-					$currentEndingTimestamp = $currentStartingTimestamp + $flamegraph->value;
-					$flamegraph->setEndingTimestamp($currentEndingTimestamp);
-
-					$visited[$i] = true;
-
-					echo "Calling recursive from level ".$level." and i is ".$i."\n";
-                    $child = new Flamegraph();
-                    $this->buildTree($child, $level + 1, $currentEndingTimestamp, $visited);
-					echo "Recursive call from level ".$level." is finished \n";
-					$flamegraph->addChildren($child);
-                }
-            }
-        }
 
 		private function generateFiles()
 		{
@@ -172,19 +150,23 @@
 			{	
 				$chart = $this->charts[$i];
 				$content = json_encode($chart);
+				$fileName = "flamegraph";
 
-				$firstColName = $chart->getFirstColumnName();
-				$secondColName = $chart->getSecondColumnName();
+				if(isset($chart->threadId))
+				{
+					echo $chart->threadId;
+					if(!file_exists("resultjs/{$folder}/{$chart->threadId}"))
+					{
+						mkdir("resultjs/{$folder}/{$chart->threadId}");
+					}
+					
+					$fileName = "{$chart->threadId}/{$fileName}";
+				}
 
-				$fileName = "{$firstColName}-{$secondColName}";
-			
-				$fileName = str_replace(' ', '_', $fileName);
-				$fileName = str_replace('/', '_', $fileName);
-
-				file_put_contents("resultjs/{$folder}/{$fileName}", $content);
+				file_put_contents("resultjs/{$folder}/{$fileName}", $content);				
 			}
 		}
 	}
 
 	$chartGenerator = new FlamegraphGenerator();
-	$chartGenerator->generateCharts("data/lamptop");	
+	$chartGenerator->generateCharts("data/phptop");	

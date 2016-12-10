@@ -173,9 +173,6 @@
 	$log_directory = "data";
 	$files = array();
 
-	$chartGenerator = new ChartJSGenerator();
-	$chartGenerator->generateCharts("data/phptop");
-/*
 	foreach(glob($log_directory.'/*.*') as $file) 
 	{
 		$inputfilename = explode(".", $file);
@@ -191,4 +188,3 @@
 		$chartGenerator = new ChartJSGenerator();
 		$chartGenerator->generateCharts($name);
 	}
-	*/

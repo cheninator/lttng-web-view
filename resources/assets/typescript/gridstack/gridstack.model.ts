@@ -10,4 +10,6 @@ export interface ChartGridItem extends GridItem {
     title: string
     chartType: string;
     name: string;
+    sort: string;
+    count: number;
 }

@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { IChart } from './chart.model';
+import { IFlamegraph } from './flamegraph.model';
 
 @Injectable()
-export class ChartService {
+export class FlamegraphService {
 
     private _chartUrl: string = "/api/charts/";
 
@@ -21,7 +21,7 @@ export class ChartService {
         let options = new RequestOptions({ headers: headers });
 
         return this._http.post(this._chartUrl, body, options)
-                        .map((response: Response) => <IChart>response.json())
+                        .map((response: Response) => <IFlamegraph>response.json())
                         .catch(this.handleError);
     }
 

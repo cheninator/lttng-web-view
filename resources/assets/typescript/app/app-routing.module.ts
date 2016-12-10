@@ -2,12 +2,17 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
+import { PHPDashboardComponent } from './../php-dashboard/php-dashboard.component';
+import { MySQLDashboardComponent } from './../mysql-dashboard/mysql-dashboard.component';
+
 import { FlamegraphComponent } from './../flamegraph/flamegraph.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/main', pathMatch: 'full' },
     { path: 'main', component: MainDashboardComponent },
-    { path: 'php', component: FlamegraphComponent }    
+    { path: 'php', component: PHPDashboardComponent },
+    { path: 'mysql', component: MySQLDashboardComponent },
+    { path: 'flamegraph', component: FlamegraphComponent }    
 ];
 
 @NgModule({

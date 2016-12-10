@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FlamegraphService } from './flamegraph.service';
+import { IFlamegraph } from './flamegraph.model';
 
 declare var d3: any;
 
@@ -7,20 +9,19 @@ declare var d3: any;
     templateUrl: './templates/flamegraph/flamegraph.component.html',
 })
 export class FlamegraphComponent implements OnInit {
-   
-    constructor() { 
+
+    constructor(private _flamegraphService: FlamegraphService) { 
 
     }
 
     public ngOnInit(): void {
 
         var flameGraph = d3.flameGraph()
-            .height(540)
-            .width(960)
+            .height(766)
+            .width(1366)
             .cellHeight(18)
             .transitionDuration(750)
             .transitionEase('cubic-in-out')
-            .sort(true)
             .title("");
 
         // Example on how to use custom tooltips using d3-tip.
@@ -32,14 +33,17 @@ export class FlamegraphComponent implements OnInit {
 
         flameGraph.tooltip(tip);
 
-        d3.json("test.json", function(error, data) {
-            
-            if (error) {
-                return console.warn(error);
-            }
-            d3.select("#chart")
-                .datum(data)
-                .call(flameGraph);
-        });
+        let body = {
+            name: "phptop:flamegraph"
+        };
+
+        this._flamegraphService.getChartData(body)
+            .subscribe(
+                (flamegraph) => {
+                    d3.select("#chart")
+                        .datum(flamegraph)
+                        .call(flameGraph);
+                }
+            );
     }
 }

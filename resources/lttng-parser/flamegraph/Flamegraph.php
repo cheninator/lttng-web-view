@@ -5,9 +5,10 @@
         public $children;
         public $name;
 		public $value;
-        
-        private $startingTimestamp;
-        private $endingTimestamp;
+
+        public $threadId;   
+        public $startingTimestamp;
+        public $endingTimestamp;
 
 		public function __construct()
 		{	
@@ -18,26 +19,6 @@
 		{
 			array_push($this->children, $child);
 		}
-
-        public function getStartingTimestamp()
-        {
-            return $this->startingTimestamp;
-        }
-
-        public function getEndingTimestamp()
-        {
-            return $this->endingTimestamp;
-        }
-
-        public function setStartingTimestamp($timestamp)
-        {
-            $this->startingTimestamp = $timestamp;
-        }
-
-        public function setEndingTimestamp($timestamp)
-        {
-            $this->endingTimestamp = $timestamp;
-        }
 
         public function jsonSerialize() 
         {

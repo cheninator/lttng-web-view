@@ -9,9 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent }   from './app.component';
 import { ChartComponent } from './../chart/chart.component';
-import { GridStackComponent } from './../gridstack/gridstack.component';
-import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
 import { FlamegraphComponent } from './../flamegraph/flamegraph.component';
+import { GridStackComponent } from './../gridstack/gridstack.component';
+
+import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
+import { PHPDashboardComponent } from './../php-dashboard/php-dashboard.component';
+import { MySQLDashboardComponent } from './../mysql-dashboard/mysql-dashboard.component';
+
 
 @NgModule({
 	imports: [ 
@@ -23,9 +27,12 @@ import { FlamegraphComponent } from './../flamegraph/flamegraph.component';
 	declarations: [ 
 		AppComponent, 
 		ChartComponent,
+		FlamegraphComponent,		
 		GridStackComponent,
+
 		MainDashboardComponent,
-		FlamegraphComponent
+		PHPDashboardComponent,
+		MySQLDashboardComponent,
 	],
 	bootstrap:    [ AppComponent ]
 })
