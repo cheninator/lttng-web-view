@@ -23,6 +23,7 @@
 /public/js
 /public/css
 
+/resources/lttng-parser/resultjs
 /resources/lttng-parser/result
 /resources/lttng-parser/data
 
