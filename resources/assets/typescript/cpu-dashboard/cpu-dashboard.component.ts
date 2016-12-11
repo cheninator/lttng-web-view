@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ChartGridItem } from './../gridstack/gridstack.model';
 
 @Component({
-    selector: 'mysql-dashboard',
-    templateUrl: './templates/mysql-dashboard/mysql-dashboard.component.html',
+    selector: 'cpu-dashboard',
+    templateUrl: './templates/cpu-dashboard/cpu-dashboard.component.html',
 })
-export class MySQLDashboardComponent {
+export class CPUDashboardComponent {
 
     private chartTiles: ChartGridItem[];
     
@@ -13,21 +13,21 @@ export class MySQLDashboardComponent {
         
         this.chartTiles = [
             {
-                title: "Top database request duration",
+                title: "CPU usage per CPU",
                 chartType: "horizontalBar",
-                name: "mysqltop:Database-Duration",
+                name: "cputop:CPU-CPU_usage",
                 count: 8,
-                sort: "DESC",
+                sort: "NONE",
                 dataGsX: 0,
                 dataGsY: 0,
                 dataGsWidth: 6,
                 dataGsHeight: 5,
             },
             {
-                title: "Top query count",
+                title: "Top CPU usage per process",
                 chartType: "horizontalBar",
-                name: "mysqltop:Query-Call_count",
-                count: 16,
+                name: "cputop:Process-CPU_usage",
+                count: 8,
                 sort: "DESC",
                 dataGsX: 6,
                 dataGsY: 0,
@@ -35,9 +35,9 @@ export class MySQLDashboardComponent {
                 dataGsHeight: 5,
             },
             {
-                title: "Call duration standard deviation",
+                title: "Top migration count per process",
                 chartType: "horizontalBar",
-                name: "mysqltop:Query-Call_duration_standard_deviation",
+                name: "cputop:Process-Migration_count",
                 count: 8,
                 sort: "DESC",
                 dataGsX: 0,
@@ -46,26 +46,15 @@ export class MySQLDashboardComponent {
                 dataGsHeight: 5,
             },
             {
-                title: "Average call duration per query",
+                title: "CPU usage per chronological priorities",
                 chartType: "horizontalBar",
-                name: "mysqltop:Query-Average_call_duration",
-                count: 16,
+                name: "cputop:Chronological_priorities-CPU_usage",
+                count: 8,
                 sort: "DESC",
                 dataGsX: 6,
                 dataGsY: 5,
                 dataGsWidth: 6,
                 dataGsHeight: 5,
-            },     
-            {
-                title: "Top query duration",
-                chartType: "horizontalBar",
-                name: "mysqltop:Query-Duration",
-                count: 16,
-                sort: "DESC",
-                dataGsX: 0,
-                dataGsY: 10,
-                dataGsWidth: 12,
-                dataGsHeight: 9,
             }
         ];
     }

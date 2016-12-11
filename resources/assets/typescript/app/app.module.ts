@@ -15,6 +15,7 @@ import { GridStackComponent } from './../gridstack/gridstack.component';
 import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
 import { PHPDashboardComponent } from './../php-dashboard/php-dashboard.component';
 import { MySQLDashboardComponent } from './../mysql-dashboard/mysql-dashboard.component';
+import { CPUDashboardComponent } from './../cpu-dashboard/cpu-dashboard.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MySQLDashboardComponent } from './../mysql-dashboard/mysql-dashboard.co
 		MainDashboardComponent,
 		PHPDashboardComponent,
 		MySQLDashboardComponent,
+		CPUDashboardComponent
 	],
 	bootstrap:    [ AppComponent ]
 })
