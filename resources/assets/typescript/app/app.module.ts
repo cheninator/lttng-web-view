@@ -14,9 +14,11 @@ import { GridStackComponent } from './../gridstack/gridstack.component';
 
 import { MainDashboardComponent } from './../main-dashboard/main-dashboard.component';
 import { PHPDashboardComponent } from './../php-dashboard/php-dashboard.component';
+import { PHPFlamegraphComponent } from './../php-dashboard/php-flamegraph.component';
 import { MySQLDashboardComponent } from './../mysql-dashboard/mysql-dashboard.component';
 import { CPUDashboardComponent } from './../cpu-dashboard/cpu-dashboard.component';
-
+import { IOUsageDashboardComponent } from './../io-dashboard/io-usage-dashboard.component';
+import { IOLatencyDashboardComponent } from './../io-dashboard/io-latency-dashboard.component';
 
 @NgModule({
 	imports: [ 
@@ -28,13 +30,16 @@ import { CPUDashboardComponent } from './../cpu-dashboard/cpu-dashboard.componen
 	declarations: [ 
 		AppComponent, 
 		ChartComponent,
-		FlamegraphComponent,		
+		FlamegraphComponent,
 		GridStackComponent,
 
 		MainDashboardComponent,
 		PHPDashboardComponent,
+		PHPFlamegraphComponent,
 		MySQLDashboardComponent,
-		CPUDashboardComponent
+		CPUDashboardComponent,
+		IOUsageDashboardComponent,
+		IOLatencyDashboardComponent
 	],
 	bootstrap:    [ AppComponent ]
 })
