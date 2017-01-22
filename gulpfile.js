@@ -1,7 +1,6 @@
-const elixir = require('laravel-elixir');
-
-require('laravel-elixir-vue-2');
-require('elixir-typescript');
+var elixir = require('laravel-elixir');
+var webpack = require('webpack')
+require('laravel-elixir-webpack-ex');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,40 +13,88 @@ require('elixir-typescript');
  |
  */
 
-elixir(mix => {
-    mix.sass('app.scss')
-	.webpack('app.js')
-	.copy('node_modules/@angular', 'public/@angular')
-	.copy('node_modules/anular2-in-memory-web-api', 'public/anular2-in-memory-web-api')
-	.copy('node_modules/core-js', 'public/core-js')
-	.copy('node_modules/reflect-metadata', 'public/reflect-metadata')
-	.copy('node_modules/systemjs', 'public/systemjs')
-	.copy('node_modules/rxjs', 'public/rxjs')
-	.copy('node_modules/zone.js', 'public/zonejs')
-	.copy('node_modules/ng2-charts', 'public/ng2-charts')
-	.copy('node_modules/font-awesome/fonts', 'public/fonts')
-	.copy('node_modules/gridstack', 'public/gridstack')
-	.copy('node_modules/jquery-ui-dist', 'public/jquery-ui-dist')
-	.copy('node_modules/jquery', 'public/jquery')
-	.copy('node_modules/chart.js', 'public/chartjs')
-	.copy('node_modules/bootstrap-sass', 'public/bootstrap')
-	.copy('node_modules/d3', 'public/d3')
-	.copy('node_modules/d3-tip', 'public/d3-tip')	
-	.copy('node_modules/d3-flame-graph', 'public/d3-flame-graph')
-	.typescript(
-		[
-		    '**/*.ts'
-		],
-		'public/app',
-		{
-		    "target": "es5",
-		    "module": "system",
-		    "moduleResolution": "node",
-		    "sourceMap": true,
-		    "emitDecoratorMetadata": true,
-		    "experimentalDecorators": true,
-		    "removeComments": false,
-		    "noImplicitAny": false
-		}
-	);
+elixir(function(mix) {
+    mix.sass('app.scss');
+
+    mix.webpack(
+        {
+            app: 'main.ts',
+            vendor: 'vendor.ts'
+        },
+        {
+            module: {
+                loaders: [
+                    {
+                        test: /\.ts$/,
+                        loader: 'ts-loader',
+                        exclude: /node_modules/
+                    },
+                    {
+                        test: /\.html$/,
+                        loader: 'raw-loader'
+                    },
+                    {
+                        test: /\.scss$/,
+                        loaders: ["raw", "sass"]
+                    }
+                ]
+            },
+            plugins: [
+                new webpack.optimize.CommonsChunkPlugin({
+                    name: 'app',
+                    filename: 'app.js',
+                    minChunks: 5,
+                    chunks: [
+                        'app'
+                    ]
+                }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    name: 'vendor',
+                    filename: 'vendor.js',
+                    minChunks: Infinity
+                }),
+                new webpack.ProvidePlugin({
+                    '__decorate': 'typescript-decorate',
+                    '__extends': 'typescript-extends',
+                    '__param': 'typescript-param',
+                    '__metadata': 'typescript-metadata'
+                })
+            ],
+            resolve: {
+                extensions: ['', '.js', '.ts']
+            },
+            debug: true,
+            devtool: 'source-map'
+        },
+        'public/js',
+        'resources/assets/typescript'
+    );
+
+    mix.version([
+        'css/app.css', 
+        'js/app.js',
+        'js/vendor.js',
+        'js/all.js',
+        'css/all.css'
+    ]);
+    
+    mix.scripts([
+        'vendor.js',
+        'app.js'
+    ], 'public/js/all.js', 'public/js');
+    
+    mix.styles([
+        'app.css'
+    ], 'public/css/all.css', 'public/css');
+
+    mix.copy('node_modules/font-awesome/fonts', 'public/build/fonts');
+    mix.copy('node_modules/bootstrap/dist/fonts', 'public/build/fonts');
+
+    mix.browserSync({
+        files: [
+            "public/js/*",
+            "public/css/*"
+        ],
+        proxy: "localhost:8000"
+    });
 });

@@ -1,7 +1,3 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
-
 // Variables
 @import "variables";
 
@@ -11,5 +7,5 @@
 // Font Awesome
 @import "node_modules/font-awesome/scss/font-awesome";
 
-// Flamegraph
-@import "node_modules/d3-flame-graph/src/d3.flameGraph"
+// Gentelella
+@import "node_modules/gentelella/src/scss/custom";

@@ -1,56 +1,60 @@
-# LAMP analysis
+# Laravel 5 + Angular 2 boilerplate
 
-Performance analysis for web application using LTTng
+![alt tag](http://i.imgur.com/3sileJw.png)
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](http://opensource.org/licenses/MIT)
+
+This is a boilerplate for Laravel5 + Angular2 projects.
+Webpack is used for bundling assets.
+
+## Versions
+- Laravel 5.3.9
+- Angular 2.0.0
+- Webpack 1.13.1
+
+
+## Requirements
+
+- PHP >= 5.6.4
+- [Composer](https://getcomposer.org/download/) - Package manager for PHP
+- [NPM](https://npmjs.org/) - Node package manager
+- [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started)
+
 
 ## Installation
 
-### Prerequisite
-You need to have PHP7 on your machine,
+- clone repository
+- run installer script via `./install` or `bash install`
 
-`$ sudo apt-get install php`
+> Installer script is a bash script that runs list of commands one-by-one. It is created to simplify installation process.
 
-### Composer
-You need to install Composer for dependency management. Open a Linux terminal and execute :
+At this point you can start developing your app.
 
-`$ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer`
 
-### NPM
-You need also to install npm for angular2 packages
+## Development
 
-`$ sudo apt-get install nodejs npm`
-  
-### Clone 
-Clone the project:
+Run development script via `./develop` or `bash develop`.
 
-`$ git clone https://github.com/cheninator/lttng-web-view.git`
+> Development script is a bash script that runs development php server and watches for changes with Gulp and Browsersync.
 
-### Install librairies
 
-`$ cd lttng-web-view`
+## Database
 
-`$ composer install`
+Set proper credentials in `.env` file in order to use database.
 
-`$ npm install`
+Run migrations via `php artisan migrate`.
 
-### Environment file
-`$ cp .env.example .env`
 
-`$ php artisan key:generate`
+## Production
 
-### Gulp
-Launch gulp program with command:
+Run `gulp --production` to merge and minify: 
 
-`$ gulp`
+- JavaScript-files into `all.js` file.
+- CSS-files into `all.css` file.
 
-In root project
+> Check `resources/views/welcome.blade.php` to see how to use those according to active environment. Don't forget to run `php artisan config:cache` when change environment in `.env` file.
 
-### Launch
-Before launche the web server, you have to make sure that the data folder in resources/lttng-parser exists. If not, extract the .tar.gz and run
 
-`$ php ChartJSGenerator.php && php Flamegraph.php`
+## License
 
-And then, you can launch the web server by executing:
-
-`$ php artisan serve`
-
-from the root folder of the project
+The repository code is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
